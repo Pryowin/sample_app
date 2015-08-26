@@ -1,11 +1,11 @@
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-$light-gray: #777;
-$gray-medium-light: #eaeaea;
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
 
 
+
+
+/* universal */
 
 body {
   padding-top: 60px;
@@ -24,22 +24,23 @@ textarea {
 }
 
 .center h1 {
-  margin-bottom: 24px;
+  margin-bottom: 10px;
 }
 
 
 
- h1, h2, h3, h4, h5, h6 { 
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
 h1 {
-  font-size: 1.5em;
+  font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   text-align: center;
-  font-weight: bold;
-  }
+}
 
 h2 {
   font-size: 1.2em;
@@ -47,7 +48,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $light-gray;
+  color: #777;
 }
 
 p {
@@ -55,11 +56,12 @@ p {
   line-height: 1.7em;
 }
 
+/* header */
 
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 2em;
+  font-size: 1.7em;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: -1px;
@@ -70,21 +72,24 @@ p {
 #logo:hover {
   color: #fff;
   text-decoration: none;
-  }
-  
+}
 
+
+/* footer */
 
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
-  color: $light-gray;
-	a {
-  		color: $gray;
-  		&:hover {
-  		color:$gray-darker;
-  		}
-  	}  
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
 }
 
 footer small {
@@ -94,9 +99,9 @@ footer small {
 footer ul {
   float: right;
   list-style: none;
-  li {
-  	float: left;
-  	margin-left: 15px;
-  }
 }
 
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
