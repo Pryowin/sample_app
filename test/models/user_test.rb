@@ -1,6 +1,13 @@
 require 'test_helper'
 
+
+
 class UserTest < ActiveSupport::TestCase
+  
+  MIN_PWD_LEN = User::MIN_PWD_LEN
+  MAX_NAME_LEN = User::MAX_NAME_LEN
+  MAX_EMAIL_LEN = User::MAX_EMAIL_LEN
+  
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
                     password: "foobar", password_confirmation: "foobar")
@@ -21,12 +28,13 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "name should not be too long" do
-    @user.name = "a" * 51
+    @user.name = "a" * (MAX_NAME_LEN + 1)
     assert_not @user.valid?
   end
   
   test "email should not be too long" do
-    @user.email = "a" * 250 + "example.com"
+    domain = "@example.com"
+    @user.email = "a" * (MAX_EMAIL_LEN - domain.length + 1) + domain
     assert_not @user.valid?
   end
   
@@ -53,5 +61,15 @@ class UserTest < ActiveSupport::TestCase
     assert_not dupUser.valid?
   end
 
-  
+  test "password should not be blank" do
+    @user.password = " " * MIN_PWD_LEN
+    assert_not @user.valid?
+  end
+
+  test "password should be at least minimum length" do
+    @user.password = "a" * (MIN_PWD_LEN - 1)
+    @user.password_confirmation = "a" * (MIN_PWD_LEN - 1)
+    
+    assert_not @user.valid?
+  end
 end
