@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
   
   has_secure_password
   validates :password,  presence: true,
-                        length: {minimum: MIN_PWD_LEN}
+                        length: {minimum: MIN_PWD_LEN},
+                        allow_nil: true
   def remember
     self.remember_token = User.new_token()
     update_attribute(:remember_digest, User.digest(remember_token))
