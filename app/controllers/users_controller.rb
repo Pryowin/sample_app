@@ -3,12 +3,14 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
   
+  PAGE_SIZE = 10  
+    
   def new
     @user = User.new
   end
   
   def index
-    @users = User.paginate(page: params[:page], :per_page => 10)
+    @users = User.paginate(page: params[:page], :per_page => PAGE_SIZE)
   end
   
   def create
