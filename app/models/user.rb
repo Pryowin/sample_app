@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :activation_token
   
   MIN_PWD_LEN = 6
   MAX_NAME_LEN = 50
@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   before_save {self.email = email.downcase}
-  
+  before_create :create_activation_digest
   
   
   validates :name,  presence: true, 
@@ -49,5 +49,13 @@ class User < ActiveRecord::Base
   #Returns random token (Used for cookies)
   def User.new_token
     SecureRandom.urlsafe_base64
-  end            
+  end         
+  
+  #Private methods
+  private
+  
+     def create_activation_digest
+       self.activation_token  = User.new_token
+       self.activation_digest = User.digest(activation_token)
+     end
 end
