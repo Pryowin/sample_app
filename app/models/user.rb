@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token  
   
   MIN_PWD_LEN = 6
   MAX_NAME_LEN = 50
@@ -45,6 +45,16 @@ class User < ActiveRecord::Base
   
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+  end
+  
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest, User.digest(reset_token))
+    update_attribute(:reset_digest_at, Time.zone.now)        
+  end
+  
+  def send_reset_email
+    UserMailer.reset_password(self).deliver_now
   end
                         
   #Class methods
