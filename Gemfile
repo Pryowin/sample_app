@@ -7,7 +7,7 @@ gem 'bcrypt'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem 'bootstrap-sass'	
+gem 'bootstrap-sass'
 gem 'sass-rails', '4.0.3'
 
 gem 'uglifier', '>= 1.3.0'
@@ -16,6 +16,9 @@ gem 'jquery-rails'
 gem 'turbolinks', '2.3.0'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+
+gem 'obscenity'
 
 group :development, :test do
   	gem 'byebug'
@@ -28,7 +31,7 @@ group :test do
 	gem 'minitest-reporters'
 	gem 'mini_backtrace'
 
-end 
+end
 
 group :production do
 	gem 'pg'
