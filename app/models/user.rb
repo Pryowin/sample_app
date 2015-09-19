@@ -63,6 +63,10 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+  def feed
+    Micropost.where("user_id = ?",id)
+  end
+
   #Class methods
 
   #Returns hash digest of the given string, used in unit tests.
