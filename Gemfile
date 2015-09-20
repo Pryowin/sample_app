@@ -5,8 +5,14 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.3'
 gem 'bcrypt'
 gem 'faker'
+
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+
 gem 'bootstrap-sass'
 gem 'sass-rails', '4.0.3'
 
@@ -17,12 +23,11 @@ gem 'turbolinks', '2.3.0'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-
 gem 'obscenity'
 
 group :development, :test do
-  	gem 'byebug'
-  	gem 'sqlite3'
+  gem 'byebug'
+  gem 'sqlite3'
 	gem 'web-console', '~> 2.0'
 	gem 'spring'
 end
