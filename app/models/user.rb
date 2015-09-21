@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    Micropost.where("user_id = ?",id)
+    Micropost.where("user_id = ? OR user_id IN (?)",id, following_ids)
   end
 
   def follow(other_user)
