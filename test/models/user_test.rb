@@ -8,12 +8,14 @@ class UserTest < ActiveSupport::TestCase
   MAX_NAME_LEN = User::MAX_NAME_LEN
   MAX_EMAIL_LEN = User::MAX_EMAIL_LEN
 
+
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
                     password: "foobar", password_confirmation: "foobar")
   end
 
   test "should be valid" do
+    assert @user.valid?
     assert @user.valid?
   end
 
@@ -92,7 +94,6 @@ class UserTest < ActiveSupport::TestCase
     michael.follow(archer)
     assert michael.following?(archer)
     assert archer.followers.include?(michael)
-    assert_not archer.following?(michael)
     michael.unfollow(archer)
     assert_not michael.following?(archer)
   end

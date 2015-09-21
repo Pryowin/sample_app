@@ -52,3 +52,11 @@ end
     end
     users.each{ |user| user.microposts.create!(content: content) }
   end
+
+  # Seed following relationships
+  users = User.all
+  user = users.first
+  following = users[2..50]
+  followers = users[3..50]
+  following.each { |followed| user.follow(followed) }
+  followers.each { |follower| follower.follow(user)}

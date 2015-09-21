@@ -7,14 +7,28 @@ michael:
   admin:            true
   activated:        true
   activated_at:     <%= Time.zone.now %>
-  
+
 archer:
   name:             Sterling Archer
   email:            duchess@example.com
   password_digest:  <%= User.digest('password') %>
   activated:        true
   activated_at:     <%= Time.zone.now %>
-  
+
+lana:
+  name:             Lana Smith
+  email:            lana@example.com
+  password_digest:  <%= User.digest('password') %>
+  activated:        true
+  activated_at:     <%= Time.zone.now %>
+
+mallory:
+  name:             Mallory Jones
+  email:            mjones@example.com
+  password_digest:  <%= User.digest('password') %>
+  activated:        true
+  activated_at:     <%= Time.zone.now %>
+
 <% 10.times do |n| %>
 user_<%= n %>:
   name:  <%= "User #{n}" %>
