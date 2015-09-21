@@ -6,7 +6,26 @@ class FollowingTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)
+    @other = users(:archer)
     log_in_as(@user)
+  end
+
+  test "should follow a user" do
+    assert_difference '@user.following.count', 1 do
+      post relationships_path, followed_id: @other.id
+    end
+    follow_redirect!
+    assert_select 'form input[type=submit][value=Unfollow]'
+  end
+
+  test "should unfollow a user" do
+    @user.follow(@other)
+    relationship = @user.active_relationships.find_by(followed_id: @other.id)
+    assert_difference '@user.following.count', -1 do
+      delete relationship_path(relationship)
+    end
+    follow_redirect!
+    assert_select 'form input[type=submit][value=Follow]'
   end
 
   test "following page" do
